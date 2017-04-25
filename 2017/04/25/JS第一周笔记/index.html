@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JS第一周笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="// 学习关键词：作用域的初步认识    // 基本数据类型： number   string  Boolean null undefined    // 引用数据类型： object function    var num = 1;    function sum () {        var num  = 1;        return num;    }    // 堆内存  栈内存">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS第一周笔记">
+<meta property="og:url" content="http://yoursite.com/2017/04/25/JS第一周笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="// 学习关键词：作用域的初步认识    // 基本数据类型： number   string  Boolean null undefined    // 引用数据类型： object function    var num = 1;    function sum () {        var num  = 1;        return num;    }    // 堆内存  栈内存">
+<meta property="og:updated_time" content="2017-04-25T11:29:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS第一周笔记">
+<meta name="twitter:description" content="// 学习关键词：作用域的初步认识    // 基本数据类型： number   string  Boolean null undefined    // 引用数据类型： object function    var num = 1;    function sum () {        var num  = 1;        return num;    }    // 堆内存  栈内存">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS第一周笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/25/JS第一周笔记/" class="article-date">
+  <time datetime="2017-04-25T11:27:22.000Z" itemprop="datePublished">2017-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS第一周笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>// 学习关键词：作用域的初步认识<br>    // 基本数据类型： number   string  Boolean null undefined<br>    // 引用数据类型： object function<br>    var num = 1;<br>    function sum () {<br>        var num  = 1;<br>        return num;<br>    }<br>    // 堆内存  栈内存<br>    // 我们把代码写进去 堆内存 只是存放代码。<br>    // 栈内存 在代码执行的时候，开辟的工作环境，叫栈内存。<br>    // 全局作用域 window<br>    // 浏览器加载html文件的时候，会自动开辟一个js执行的最外层工作空间，栈内存window<br>    //在函数运行的时候，会开辟一个独立的工作空间，也开辟了一个栈内存，让代码执行工作。<br>    // 公共变量，全局变量。 在全局作用域里声明的函数和变量 叫做全局变量<br>    // 私有变量。     在私有作用域中声明的变量 就叫做私有变量<br>// 全局作用域 window ，加载html页面，浏览器会创建一个栈内存空间供js代码代码执行，这个栈内存就是全局作用域<br>    //    var num1 = 1;<br>    //    var num2 = 2;<br>    //    var num3 = 3;<br>    //    function method (param1, param2){<br>    //        console.log(num1); // undefined<br>    //        var num2 = 3;<br>    //        var num1 = 5; // 5<br>    //        console.log(num2); // 3<br>    //        return function () {<br>    //        var num3 = 3;<br>    //        console.log(num3)<br>    //        }<br>    //    }<br>    //    method();<br>    //    // 如何查找上一级作用域？<br>    //    // method在执行之出，创建一个栈内存，供他的代码工作执行，进行预解释。在这个栈内存私有作用域中，所声明的变量都是私有变量，这些变量 num1 ，是私有变量，会受到当前作用域的保护，不被外界所干扰和调用。（闭包）。代码执行，我执行到num2，当前作用域中没有提前声明他的存在，那当前作用域会访问上一级作用域，问问他有没有创建和赋值。这就是作用域链，私有和共有作用域之间的关系。1、私有能访问公有的，公有的不行能调用访问私有的。<br>    //<br>    //<br>    //<br>    //<br>    //    // 1、作用域是如何产生的<br>    //    // 2、如何查找上一级作用域（作用域链）。 引出了闭包的内容。<br>    //    // 3、严格意义上的闭包，严格闭包通过栈内存不销毁，保护内部变量，而且下一级作用域可已访问内部变量<br>    //</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/25/JS第一周笔记/" data-id="cj1xgygu10001kus6td7zgsse" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/25/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/04/25/JS第一周笔记/">JS第一周笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/04/25/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
