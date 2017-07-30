@@ -93,12 +93,17 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="#复习ES6 [toc] ##一.定义变量 let和const ###let命令 ####基本语法1234567let a=[];for(let i=0;i&amp;lt;10;i++)&amp;#123;   a[i]=function()&amp;#123;      return i   &amp;#125;&amp;#125;a[2](); ####不存在变量提升12console.log(a);//报错let a=0; ###">
+<meta name="keywords">
+<meta property="og:type" content="article">
 <meta property="og:title" content="阳仔小屋">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/07/30/由浅入深ES6/index.html">
 <meta property="og:site_name" content="阳仔小屋">
+<meta property="og:description" content="#复习ES6 [toc] ##一.定义变量 let和const ###let命令 ####基本语法1234567let a=[];for(let i=0;i&amp;lt;10;i++)&amp;#123;   a[i]=function()&amp;#123;      return i   &amp;#125;&amp;#125;a[2](); ####不存在变量提升12console.log(a);//报错let a=0; ###">
+<meta property="og:updated_time" content="2017-07-30T09:30:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="阳仔小屋">
+<meta name="twitter:description" content="#复习ES6 [toc] ##一.定义变量 let和const ###let命令 ####基本语法1234567let a=[];for(let i=0;i&amp;lt;10;i++)&amp;#123;   a[i]=function()&amp;#123;      return i   &amp;#125;&amp;#125;a[2](); ####不存在变量提升12console.log(a);//报错let a=0; ###">
 
 
 
@@ -126,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/30/由浅入深ES6/"/>
 
 
 
 
 
-  <title>阳仔小屋</title>
+  <title> | 阳仔小屋</title>
   
 
 
@@ -157,9 +162,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,9 +245,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -270,9 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/30/由浅入深ES6/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -319,9 +320,7 @@
       
 
       
-        
-          
-            <p>#复习ES6</p>
+        <p>#复习ES6</p>
 <p>[toc]</p>
 <p>##一.定义变量 let和const</p>
 <p>###let命令</p>
@@ -425,20 +424,27 @@
 <p>####以其他数据结构的相互转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">//（1）Map 转为数组</div><div class="line">    //前面已经提过，Map 转为数组最方便的方法，就是使用扩展运算符（...）。</div><div class="line">    const myMap = new Map()</div><div class="line">        .set(true, 7)</div><div class="line">        .set(&#123;foo: 3&#125;, [&apos;abc&apos;]);</div><div class="line">    console.log([...myMap]);</div><div class="line"></div><div class="line">    //（2）数组 转为 Map</div><div class="line">    //将数组传入 Map 构造函数，就可以转为 Map。</div><div class="line">    new Map([</div><div class="line">        [true, 7],</div><div class="line">        [&#123;foo: 3&#125;, [&apos;abc&apos;]]</div><div class="line">    ]);</div><div class="line">    </div><div class="line">    //（3）Map 转为对象</div><div class="line">    //如果所有 Map 的键都是字符串，它可以转为对象。</div><div class="line">    function strMapToObj(strMap) &#123;</div><div class="line">        let obj = Object.create(null);</div><div class="line">        for (let [k,v] of strMap) &#123;</div><div class="line">            obj[k] = v;</div><div class="line">        &#125;</div><div class="line">        return obj;</div><div class="line">    &#125;</div><div class="line">    const myMap = new Map()</div><div class="line">        .set(&apos;yes&apos;, true)</div><div class="line">        .set(&apos;no&apos;, false);</div><div class="line">    strMapToObj(myMap);</div><div class="line"></div><div class="line">    //（4）对象转为 Map</div><div class="line">    function objToStrMap(obj) &#123;</div><div class="line">        let strMap = new Map();</div><div class="line">        for (let k of Object.keys(obj)) &#123;</div><div class="line">            strMap.set(k, obj[k]);</div><div class="line">        &#125;</div><div class="line">        return strMap;</div><div class="line">    &#125;</div><div class="line">    objToStrMap(&#123;yes: true, no: false&#125;);</div><div class="line"></div><div class="line">    //（5）Map 转为 JSON</div><div class="line">    //Map 转为 JSON 要区分两种情况。一种情况是，Map 的键名都是字符串，这时可以选择转为对象 JSON。</div><div class="line">    function strMapToJson(strMap) &#123;</div><div class="line">        return JSON.stringify(strMapToObj(strMap));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    let myMap = new Map().set(&apos;yes&apos;, true).set(&apos;no&apos;, false);</div><div class="line">    strMapToJson(myMap);</div><div class="line"></div><div class="line">    //另一种情况是，Map 的键名有非字符串，这时可以选择转为数组 JSON。</div><div class="line">    function mapToArrayJson(map) &#123;</div><div class="line">        return JSON.stringify([...map]);</div><div class="line">    &#125;</div><div class="line">    let myMap = new Map().set(true, 7).set(&#123;foo: 3&#125;, [&apos;abc&apos;]);</div><div class="line">    mapToArrayJson(myMap);</div><div class="line"></div><div class="line">    //（6）JSON 转为 Map</div><div class="line">    //JSON 转为 Map，正常情况下，所有键名都是字符串。</div><div class="line">    function jsonToStrMap(jsonStr) &#123;</div><div class="line">        return objToStrMap(JSON.parse(jsonStr));</div><div class="line">    &#125;</div><div class="line">    jsonToStrMap(&apos;&#123;&quot;yes&quot;: true, &quot;no&quot;: false&#125;&apos;);</div><div class="line"></div><div class="line">    //但是，有一种特殊情况，整个 JSON 就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。这时，它可以一一对应地转为Map。这往往是数组转为 JSON 的逆操作。</div><div class="line">    function jsonToMap(jsonStr) &#123;</div><div class="line">        return new Map(JSON.parse(jsonStr));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    jsonToMap(&apos;[[true,7],[&#123;&quot;foo&quot;:3&#125;,[&quot;abc&quot;]]]&apos;);</div></pre></td></tr></table></figure></p>
 <p>###WeakMap<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//WeakMap结构与Map结构类似，也是用于生成键值对的集合。</div><div class="line">    //WeakMap与Map的区别有两点。</div><div class="line">    //1)WeakMap只接受对象作为键名（null除外），不接受其他类型的值作为键名。</div><div class="line">    //2)WeakMap的键名所指向的对象，不计入垃圾回收机制。</div><div class="line">    //WeakMap 就是为了解决这个内存泄漏而诞生的，它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。</div><div class="line"></div><div class="line">   // 基本上，如果你要往对象上添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。一个典型应用场景是，在网页的 DOM 元素上添加数据，就可以使用WeakMap结构。当该 DOM 元素被清除，其所对应的WeakMap记录就会自动被移除。</div><div class="line"></div><div class="line">    //只有四个方法可用：get()、set()、has()、delete()。</div></pre></td></tr></table></figure></p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
@@ -446,141 +452,38 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XinZe Jia">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="阳仔小屋">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/25/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T19:07:05+08:00">
-                2017-04-25
-              </time>
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2017/04/25/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -588,6 +491,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -608,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -653,6 +569,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二-变量的解构赋值"><span class="nav-number">1.</span> <span class="nav-text">二.变量的解构赋值</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -766,10 +698,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 
