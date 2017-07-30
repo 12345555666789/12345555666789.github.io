@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一.什么是MongoDB MongoDB是一个基于分布式文件存储的开源数据系统MongoDB将数据存储为一个文档,数据结构有键值对组成.MongoDB文档类似于JSON对象.字段值可以包含其他文档,数组及文档数组 二. MongoDB安装 windows安装  Windows官方安装指南 绿色版就是解压之后就可以用 mongodb32位绿色版 http://pan.baidu.com/s/1pLe">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB/Mongoose">
+<meta property="og:url" content="http://yoursite.com/2017/07/30/MongoDB:Mongoose/index.html">
+<meta property="og:site_name" content="阳仔小屋">
+<meta property="og:description" content="一.什么是MongoDB MongoDB是一个基于分布式文件存储的开源数据系统MongoDB将数据存储为一个文档,数据结构有键值对组成.MongoDB文档类似于JSON对象.字段值可以包含其他文档,数组及文档数组 二. MongoDB安装 windows安装  Windows官方安装指南 绿色版就是解压之后就可以用 mongodb32位绿色版 http://pan.baidu.com/s/1pLe">
+<meta property="og:image" content="http://yoursite.com/2017/07/30/MongoDB:Mongoose/1500705930894.png">
+<meta property="og:updated_time" content="2017-07-30T10:38:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB/Mongoose">
+<meta name="twitter:description" content="一.什么是MongoDB MongoDB是一个基于分布式文件存储的开源数据系统MongoDB将数据存储为一个文档,数据结构有键值对组成.MongoDB文档类似于JSON对象.字段值可以包含其他文档,数组及文档数组 二. MongoDB安装 windows安装  Windows官方安装指南 绿色版就是解压之后就可以用 mongodb32位绿色版 http://pan.baidu.com/s/1pLe">
+<meta name="twitter:image" content="http://yoursite.com/2017/07/30/MongoDB:Mongoose/1500705930894.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/30/MongoDB:Mongoose/"/>
+
+
+
+
+
+  <title>MongoDB/Mongoose | 阳仔小屋</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">阳仔小屋</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/30/MongoDB:Mongoose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XinZe Jia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="阳仔小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB/Mongoose</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T18:38:19+08:00">
+                2017-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一-什么是MongoDB"><a href="#一-什么是MongoDB" class="headerlink" title="一.什么是MongoDB"></a>一.<code>什么是MongoDB</code></h3><blockquote>
+<p><strong>MongoDB是一个基于分布式文件存储的开源数据系统</strong><br><strong>MongoDB将数据存储为一个文档,数据结构有键值对组成.</strong><br><strong>MongoDB文档类似于JSON对象.字段值可以包含其他文档,数组及文档数组</strong></p>
+<h3 id="二-MongoDB安装"><a href="#二-MongoDB安装" class="headerlink" title="二. MongoDB安装"></a>二. MongoDB安装</h3><ul>
+<li><p><strong>windows安装</strong></p>
+<ul>
+<li>Windows官方安装指南 绿色版就是解压之后就可以用</li>
+<li>mongodb32位绿色版 <a href="http://pan.baidu.com/s/1pLe3vM7" target="_blank" rel="external">http://pan.baidu.com/s/1pLe3vM7</a></li>
+<li>MongoDB64位绿色版 <a href="http://pan.baidu.com/s/1cMM9oq" target="_blank" rel="external">http://pan.baidu.com/s/1cMM9oq</a></li>
+<li>mongo客户端绿色版 <a href="http://pan.baidu.com/s/1kUIQlUZ" target="_blank" rel="external">http://pan.baidu.com/s/1kUIQlUZ</a></li>
+</ul>
+</li>
+<li><p><strong>Mac安装</strong></p>
+<ul>
+<li>先安装homebrew,Homebrew简称brew，是Mac OSX上的软件包管理工具，能在Mac中方便的安装软件或者卸载软件</li>
+<li><a href="http://brew.sh/" target="_blank" rel="external">http://brew.sh/</a></li>
+<li>Homebrew的安装非常简单，打开终端复制、粘贴以下命令，回车，搞定<br><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></li>
+</ul>
+</li>
+<li><p>使用brew安装mongodb </p>
+<ul>
+<li><code>brew install mongodb</code></li>
+</ul>
+</li>
+<li><p>创建数据存放目录</p>
+<ul>
+<li><code>sudo mkdir -p /data/db</code><br>如果提示输入密码请输入正确的密码</li>
+</ul>
+</li>
+<li>启动mongodb<ul>
+<li><code>sudo mongod &amp;</code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="三-mongodb启动与连接"><a href="#三-mongodb启动与连接" class="headerlink" title="三.mongodb启动与连接"></a>三.mongodb启动与连接</h3><blockquote>
+<ul>
+<li>windows启动服务器端<ul>
+<li>找到mongodb安装目录,一般是<code>C:\Program Files\MongoDB 2.6 Standard\bin</code></li>
+<li>按下Shift+鼠标右键,选择在此处打开命令窗口</li>
+<li>在除C盘外的盘符新建一个空目录,如 <code>D:\Mongodb\data</code></li>
+<li>在命令行中输入mongod –dbpath=刚创建的空目录,如<code>mongod --dbpath=D:\Mongodb\data</code><br>如果是windows32的系统用户，请加参数 –storageEngine=mmapv1, 如 <code>mongod --dbpath=D:\Mongodb\data --storageEngine=mmapv1</code></li>
+</ul>
+</li>
+<li>再按回车键 <ul>
+<li>如果出现waiting for connections on port 27017就表示启动成功,已经在27017端口上监听了客户端的请求</li>
+<li>注意：<code>--dbpath</code>后的值表示数据库文件的存储路径,而且后面的路径必须事先创建好，必须已经存在，否则服务开启失败</li>
+<li>注意：这个命令窗体绝对不能关,关闭这个窗口就相当于停止了mongodb服务</li>
+<li>如果mongoVUE客户端报错 “MongoDB.Bson.BsonObjectId”的类型初始值设定项引发异常<ul>
+<li>解决方案如下：在window中打开功能里输入regedit,回车打开注册器。然后进入如下路径中 HKEY_LOCAL_MACHINE\system\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy 将enable设置为0 即可。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>启动客户端连接服务器</strong><ul>
+<li>找到mongodb安装目录,一般是 <code>C:\Program Files\MongoDB 2.6 Standard\bin</code></li>
+<li>按下Shift+鼠标右键,选择在此处打开命令窗口 </li>
+<li>Mac请无视上面步骤直接进行</li>
+<li>命令窗体中输入 mongo –host=127.0.0.1 或者 mongo 按回车键<ul>
+<li>备注：–host后的值表示服务器的ip地址 备注： –host=127.0.0.1 表示的就是本地服务器,每次数据库都会默认连接test数据库</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p> ###四.MongoDB基本概念</p>
+<blockquote>
+<ul>
+<li>数据库 MongoDB的单个实例可以容纳多个独立的数据库，比如一个学生管理系统就可以对应一个数据库实例</li>
+<li>集合 数据库是由集合组成的,一个集合用来表示一个实体,如学生集合</li>
+<li>文档 集合是由文档组成的，一个文档表示一条记录,比如一位同学张三就是一个文档<br><a href="http://7xjf2l.com1.z0.glb.clouddn.com/mongovue.png" target="_blank" rel="external">http://7xjf2l.com1.z0.glb.clouddn.com/mongovue.png</a><br><img src="./1500705930894.png" alt="Alt text"></li>
+</ul>
+</blockquote>
+<h1 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose"></a>Mongoose</h1><blockquote>
+<h3 id="一-Mongoose是什么"><a href="#一-Mongoose是什么" class="headerlink" title="一.Mongoose是什么"></a>一.Mongoose是什么</h3><p><strong>Mongoose是MongoDB的一个对象模型工具 同时它也是针对MongoDB操作的一个对象模型库,封装了MongoDB对文档的的一些增删改查等常用方法 让NodeJS操作Mongodb数据库变得更加灵活简单</strong></p>
+<h3 id="二-安装mongoose"><a href="#二-安装mongoose" class="headerlink" title="二.安装mongoose"></a>二.安装mongoose</h3><p><strong><code>npm install mongoose</code></strong></p>
+<h3 id="三-使用mongoose"><a href="#三-使用mongoose" class="headerlink" title="三.使用mongoose"></a>三.使用mongoose</h3><p><code>在mongo服务开启后再执行此JS代码</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&gt;第一步先引入mongoose模块</div><div class="line">&gt;var mongoose = require(&quot;mongoose&quot;);</div><div class="line">&gt;//mongoose.connect(&quot;mongodb://localhost:端口号/数据库名称&quot;);</div><div class="line">&gt;第二步返回连接对象</div><div class="line">&gt;mongoose.connect(&quot;mongodb://localhost:27017/zhufengpeixunblog&quot;);</div><div class="line">&gt;</div><div class="line">&gt;第三步创建数据库的骨架模型(Schema),规定集合文档中的字段名称和字段类型,这就是规定了集合中文档的名称为username password,类型分别是字符串和数字</div><div class="line">&gt;let UserSchema=new mingoose.Schema(&#123;</div><div class="line">&gt; name:String, //姓名</div><div class="line">      binary:Buffer,//二进制</div><div class="line">      living:Boolean,//是否活着</div><div class="line">      birthday:Date,//生日</div><div class="line">      age:Number,//年龄</div><div class="line">      _id:Schema.Types.ObjectId,  //主键</div><div class="line">      _fk:Schema.Types.ObjectId,  //外键</div><div class="line">      array:[],//数组</div><div class="line">      arrOfString:[String],//字符串数组</div><div class="line">      arrOfNumber:[Number],//数字数组</div><div class="line">      arrOfDate:[Date],//日期数组</div><div class="line">      arrOfBuffer:[Buffer],//Buffer数组</div><div class="line">      arrOfBoolean:[Boolean],//布尔值数组</div><div class="line">      arrOfObjectId:[Schema.Types.ObjectId]//对象ID数组</div><div class="line">      nested:&#123; //内嵌文档</div><div class="line">        name:String,</div><div class="line">      &#125;//如果保存的字段在Schema中没有定义,会被忽略掉</div><div class="line">      //如果没有提供完整的所有字段,那么只会保存给定的字段</div><div class="line">      //如果类型不匹配,mongodb会尝试进项转换,如果转换成功则保存,如果转换失败则报错</div><div class="line">&gt; //collection可以用来指定合集的名称</div><div class="line">&gt; &#125;,collection:&apos;jiazexin&apos;)</div><div class="line">&gt;  </div><div class="line">&gt; 第四步定义模型里(Model) 传两个参数表示定义一个模块 传一个参数表示获取模型,如果不通过collection指定集合的名称,那么集合名称=模型名变成负数小写,在数据库中的集合名称等于 模型名转小写再转复数,比如 Person&gt;person&gt;people,Child&gt;child&gt;children,此模型是跟某个MongoDB连接绑定的</div><div class="line">&gt; let User =conn.model(&apos;User&apos;,UserSchema);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="三-1-增加数据"><a href="#三-1-增加数据" class="headerlink" title="三.(1)增加数据"></a>三.(1)增加数据</h3><p><strong>语法:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;Model.create(文档数据, callback))</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;User.create(&#123; name:&quot;zfpx&quot;, age:7&#125;, function(error,doc)&#123;</div><div class="line">    if(error) &#123;</div><div class="line">        console.log(error);</div><div class="line">    &#125; else &#123;</div><div class="line">        console.log(doc);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="三-2-删除指定数据"><a href="#三-2-删除指定数据" class="headerlink" title="三.(2)删除指定数据"></a>三.(2)删除指定数据</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;Model.remove(查询条件,callback);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;var conditions = &#123; name: &apos;zfpx&apos; &#125;;</div><div class="line">User.remove(conditions, function(error)&#123;</div><div class="line">    if(error) &#123;</div><div class="line">          console.log(error);</div><div class="line">    &#125; else &#123;</div><div class="line">        console.log(&apos;Delete success!&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>文档的删除 传一个参数是文档对象就是筛选条件<br>默认情况下会删除掉符合条件的所有文档<br>不同的模型对应于不同的集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;User.remove(&#123;age:300&#125;,function(err,result)&#123;</div><div class="line">  if(err)&#123;</div><div class="line">    console.log(err);</div><div class="line">  &#125;else&#123;</div><div class="line">    //&#123; ok: 1, n: 0 &#125; ok=1表示删除操作成功 n=0表示实际删除掉的条数为0</div><div class="line">    console.log(result.result);</div><div class="line">  &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="三-3-更改文档"><a href="#三-3-更改文档" class="headerlink" title="三.(3)更改文档"></a>三.(3)更改文档</h3><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;Model.update(查询条件,更新对象,callback);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt;var conditions = &#123;name : &apos;zfpx&apos;&#125;;</div><div class="line">  var update = &#123;$set : &#123; age : 100 &#125;&#125;;</div><div class="line">  User.update(conditions, update, function(error)&#123;</div><div class="line">      if(error) &#123;</div><div class="line">          console.log(error);</div><div class="line">      &#125; else &#123;</div><div class="line">          console.log(&apos;Update success!&apos;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>请注意如果匹配到多条记录，默认只更新一条，如果要更新匹配到的所有记录的话需要加一个参数 {multi:true}</p>
+<h3 id="三-4-基本查询"><a href="#三-4-基本查询" class="headerlink" title="三.(4)基本查询"></a>三.(4)基本查询</h3><h4 id="属性过滤"><a href="#属性过滤" class="headerlink" title="属性过滤"></a>属性过滤</h4><p><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;find(Conditions,field,callback)</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&gt;//field省略或为Null，则返回所有属性。</div><div class="line">//返回只包含name、age两个键的所有记录</div><div class="line">User.find(&#123;&#125;,&#123;name:1, age:1, _id:0&#125;，function(err,docs)&#123;</div><div class="line">   //docs 查询结果集</div><div class="line">&#125;)</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>我们只需要把显示的属性设置为大于零的数就可以，当然1是最好理解的，_id是默认返回，如果不要显示加上(“_id”:0)</p>
+<h4 id="findOne-查询单条"><a href="#findOne-查询单条" class="headerlink" title="findOne(查询单条)"></a>findOne(查询单条)</h4><p>与find相同，但只返回单个文档，也就说当查询到即一个符合条件的数据时，将停止继续查询，并返回查询结果<br><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;findOne(Conditions,callback)</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;User.findOne(&#123; age: 6&#125;, function (err, doc)&#123;</div><div class="line">       // 查询符合age等于6的第一条数据</div><div class="line">       // doc是查询结果</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="findById-按ID单条数据"><a href="#findById-按ID单条数据" class="headerlink" title="findById(按ID单条数据)"></a>findById(按ID单条数据)</h4><p>与findOne相同，但它只接收文档的_id作为参数，返回单个文档<br><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;findById(_id, callback)</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;User.findById(person._id, function (err, doc)&#123;</div><div class="line">     //doc 查询结果文档</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="四-高级查询"><a href="#四-高级查询" class="headerlink" title="四.高级查询"></a>四.高级查询</h3><p><strong>可以限制结果的数量,跳过部分结果,根据任意键对结果进行各种排序</strong><br>所有这些选项都要在查询被发送到服务器之前指定</p>
+<h4 id="limit-限制数量"><a href="#limit-限制数量" class="headerlink" title="limit(限制数量)"></a>limit(限制数量)</h4><p><strong>在查询操作中,有时数据量会很大,这时我们就需要对返回结果的数量进行限制 那么我们就可以使用limit函数，通过它来限制结果数量。</strong><br><strong>语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;find(Conditions,fields,options,callback);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;User.find(&#123;&#125;,null,&#123;limit:20&#125;,function(err,docs)&#123;</div><div class="line">        console.log(docs);</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>如果匹配的结果不到20个，则返回匹配数量的结果，也就是说limit函数指定的是上限而非下限</p>
+<h4 id="skip-跳过-略过的数量"><a href="#skip-跳过-略过的数量" class="headerlink" title="skip(跳过/略过的数量)"></a>skip(跳过/略过的数量)</h4><p><strong>skip函数的功能是略过指定数量的匹配结果，返回余下的查询结果 如下示例：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;find(Conditions,fields,options,callback);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;User.find(&#123;&#125;,null,&#123;skip:4&#125;,function(err,docs)&#123;</div><div class="line">        console.log(docs);</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>如果查询结果数量中少于4个的话，则不会返回任何结果。</p>
+<h4 id="sort函数"><a href="#sort函数" class="headerlink" title="sort函数"></a>sort函数</h4><p><strong>sort函数可以将查询结果数据进行排序操作 该函数的参数是一个或多个键/值对 键代表要排序的键名,值代表排序的方向,1是升序,-1是降序 语法</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;find(Conditions,fields,options,callback)</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>代码</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; Model.find(&#123;&#125;,null,&#123;sort:&#123;age:-1&#125;&#125;,function(err,docs)&#123;</div><div class="line">      //查询所有数据，并按照age降序顺序返回数据docs</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>sort函数可根据用户自定义条件有选择性的来进行排序显示数据结果。</p>
+<p>####分页查询<br><strong>设置范围后每次返回的文档条数</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;Model(&apos;User&apos;).find(&#123;&#125;)</div><div class="line">  .sort(&#123;createAt:-1&#125;)</div><div class="line">  .skip((pageNum-1)*pageSize)</div><div class="line">  .limit(pageSize)</div><div class="line">  .populate(&apos;user&apos;)</div><div class="line">  .exec(function(err,docs)&#123;</div><div class="line">     console.log(docs);</div><div class="line">  &#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="populate"><a href="#populate" class="headerlink" title="populate"></a>populate</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&gt;var mongoose = require(&apos;mongoose&apos;);</div><div class="line">//连接数据库</div><div class="line">mongoose.connect(&apos;mongodb://localhost:27017/201606blog&apos;);</div><div class="line">//定义课程Schema</div><div class="line">var CourseSchema = new mongoose.Schema(&#123;</div><div class="line">    name:String</div><div class="line">&#125;);</div><div class="line">var CourseModel = mongoose.model(&apos;Course&apos;,CourseSchema);</div><div class="line">var PersonSchema = new mongoose.Schema(&#123;</div><div class="line">    name:&#123;</div><div class="line">        type:String,</div><div class="line">        required:true</div><div class="line">    &#125;,</div><div class="line">    // 外键 别的集合的主键</div><div class="line">    course:&#123;</div><div class="line">        type:mongoose.Schema.Types.ObjectId,</div><div class="line">        ref:&apos;Course&apos; //指明此外键是哪个集合中的外键</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">var PersonModel = mongoose.model(&apos;Person&apos;,PersonSchema);</div><div class="line">CourseModel.create(&#123;name:&apos;node.js&apos;&#125;,function(err,course)&#123;</div><div class="line">    PersonModel.create(&#123;name:&apos;zfpx&apos;,course:course._id&#125;,function(err,doc)&#123;</div><div class="line">        console.log(doc);</div><div class="line">        PersonModel.findById(doc._id).populate(&apos;course&apos;).exec(function(err,doc)&#123;</div><div class="line">            console.log(doc);</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;);</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/30/由浅入深ES6/" rel="prev" title="复习ES6">
+                复习ES6 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="XinZe Jia" />
+          <p class="site-author-name" itemprop="name">XinZe Jia</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-什么是MongoDB"><span class="nav-number">1.</span> <span class="nav-text">一.什么是MongoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-MongoDB安装"><span class="nav-number">2.</span> <span class="nav-text">二. MongoDB安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-mongodb启动与连接"><span class="nav-number">3.</span> <span class="nav-text">三.mongodb启动与连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mongoose"><span class="nav-number"></span> <span class="nav-text">Mongoose</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-Mongoose是什么"><span class="nav-number">1.</span> <span class="nav-text">一.Mongoose是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装mongoose"><span class="nav-number">2.</span> <span class="nav-text">二.安装mongoose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-使用mongoose"><span class="nav-number">3.</span> <span class="nav-text">三.使用mongoose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-1-增加数据"><span class="nav-number">4.</span> <span class="nav-text">三.(1)增加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-2-删除指定数据"><span class="nav-number">5.</span> <span class="nav-text">三.(2)删除指定数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-3-更改文档"><span class="nav-number">6.</span> <span class="nav-text">三.(3)更改文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-4-基本查询"><span class="nav-number">7.</span> <span class="nav-text">三.(4)基本查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性过滤"><span class="nav-number">7.1.</span> <span class="nav-text">属性过滤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findOne-查询单条"><span class="nav-number">7.2.</span> <span class="nav-text">findOne(查询单条)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findById-按ID单条数据"><span class="nav-number">7.3.</span> <span class="nav-text">findById(按ID单条数据)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-高级查询"><span class="nav-number">8.</span> <span class="nav-text">四.高级查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#limit-限制数量"><span class="nav-number">8.1.</span> <span class="nav-text">limit(限制数量)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#skip-跳过-略过的数量"><span class="nav-number">8.2.</span> <span class="nav-text">skip(跳过/略过的数量)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sort函数"><span class="nav-number">8.3.</span> <span class="nav-text">sort函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#populate"><span class="nav-number">8.4.</span> <span class="nav-text">populate</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XinZe Jia</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
